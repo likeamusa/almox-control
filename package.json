@@ -1,0 +1,30 @@
+{
+  "name": "almox-control",
+  "version": "1.0.0",
+  "description": "Para controle de estoque de almoxarifado.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/likeamusa/almox-control.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/likeamusa/almox-control/issues"
+  },
+  "homepage": "https://github.com/likeamusa/almox-control#readme",
+  "dependencies": {
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mssql": "^9.1.1",
+    "sequelize": "^6.32.0"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "morgan": "^1.10.0"
+  }
+}

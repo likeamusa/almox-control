@@ -18,3 +18,5 @@ const TipoMov = database.define('tipo_mov', {
         allowNull: false,
     },
 });
+
+module.exports = TipoMov;

@@ -1,25 +1,31 @@
 const database = require('../../db');
 const { DataTypes } = require('sequelize');
 
-const Material = database.define('material', {
+const Fornecedor = database.define('fornecedor', {
+
     id: {
+
         type: DataTypes.INTEGER,
         alowNull: false,
         primaryKey: true,
-    },
-    descricao: {
-        type: DataTypes.STRING,
-        alowNull: false,
-    },
-    umd: {
-        type: DataTypes.STRING,
-        alowNull: false,
-    },
+        autoIncrement: true,
 
-    valor: {
-        type: DataTypes.FLOAT,
+    }, // define o id do fornecedor
+
+    cnpj: {
+
+        type: DataTypes.STRING,
         alowNull: false,
-    }
+
+    }, // define o cnpj do fornecedor
+
+    nome: {
+
+        type: DataTypes.STRING,
+        alowNull: false,
+
+    }, // define o nome do fornecedor
+
 });
 
-module.exports = Material;
+module.exports = Fornecedor;

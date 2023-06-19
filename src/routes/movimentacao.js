@@ -6,4 +6,6 @@ router.post('/', MovimentacaoController.create);
 
 router.get('/', MovimentacaoController.read);
 
+router.put('/:id_mov', MovimentacaoController.autorize);
+
 module.exports = router;

@@ -13,11 +13,16 @@ const Usuario = require('./usuario');
 
 const Movimentacao = db.define('movimentacao', {
 
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+    }, // define o id da movimentação
+
     id_mov: {
 
         type: DataTypes.BIGINT,
         alowNull: false,
-        primaryKey: true,
 
     }, // define o id da movimentação
 

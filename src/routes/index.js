@@ -12,6 +12,7 @@ const LaudoRoutes = require('./laudo');
 const FornecedorRoutes = require('./fornecedor');
 const ArquivoRoutes = require('./arquivo');
 const NotaRoutes = require('./nota');
+const CadastroController = require('../controller/cadastro');
 
 const MovimentacaoRoutes = require('./movimentacao');
 
@@ -42,5 +43,7 @@ routes.use('/arquivos', ArquivoRoutes);
 routes.use('/notas', NotaRoutes);
 
 routes.use('/movimentacoes', MovimentacaoRoutes);
+
+routes.get('/cadastro', CadastroController.read);
 
 module.exports = routes;

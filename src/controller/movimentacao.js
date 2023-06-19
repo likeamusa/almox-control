@@ -68,7 +68,37 @@ module.exports = {
                 ]
             });
 
-            return res.status(200).json(mov);
+            const movs = mov.map((mov) => {
+                return {
+                    id_mov: mov.id_mov,
+                    tipo_mov: mov.tipo,
+                    id_centro_origem: mov.id_centro_origem,
+                    id_centro_destino: mov.id_centro_destino,
+                    id_resp_sol: mov.id_resp_sol,
+                    id_resp_aut: mov.id_resp_aut,
+                    id_material: mov.id_material,
+                    n_lote: mov.n_lote,
+                    n_laudo: mov.n_laudo,
+                    n_nota: mov.n_nota,
+                    n_ca: mov.n_ca,
+                    qtde: mov.qtde,
+                    data: mov.data,
+                    status: mov.status,
+                    mov: mov.tipo_mov?.mov,
+                    origem: mov.origem?.descricao,
+                    destino: mov.destino?.descricao,
+                    solicitante: mov.solicitante?.nome,
+                    autorizador: mov.autorizador?.nome,
+                    material: mov.material?.descricao,
+                    vencimento_ca: mov.c_a_?.vencimento,
+                    validade_lote: mov.lote?.validade,
+                    vencimento_laudo: mov.laudo?.vencimento,
+                    id_usuario: mov.id_usuario,
+
+                };
+            });
+
+            return res.status(200).json(movs);
 
         } catch (error) {
 
@@ -77,4 +107,44 @@ module.exports = {
 
         }
     }, // lê todas as movimentações
+
+    async autorize(req, res) {
+
+        try {
+
+            const { id_mov } = req.params;
+
+            const mov = await Movimentacao.findAll({
+                where: { id_mov },
+            });
+
+            if (!mov) {
+
+                return res.status(404).json({ error: 'Movimentação não encontrada' });
+
+            } // verifica se a movimentação existe
+
+            if (mov.status === 'Autorizado') {
+
+                return res.status(400).json({ error: 'Movimentação já autorizada' });
+
+            } // verifica se a movimentação já foi autorizada
+
+            const autorizado = await Movimentacao.update({ status: 'Autorizada' }, {
+                where: { id_mov },
+            });
+
+            return res.status(200).json(autorizado);
+
+        } // tenta executar
+
+        catch (error) {
+
+            console.log(error);
+            return res.status(500).json(error);
+
+        } // retorna erro
+
+    }, // autoriza uma movimentação
+
 };  // exporta o módulo

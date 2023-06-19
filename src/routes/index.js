@@ -46,4 +46,8 @@ routes.use('/movimentacoes', MovimentacaoRoutes);
 
 routes.get('/cadastro', CadastroController.read);
 
+routes.get('/status', (req, res) => {
+    res.send({ status: 200 });
+});
+
 module.exports = routes;

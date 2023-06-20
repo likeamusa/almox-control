@@ -8,16 +8,14 @@ module.exports = {
 
             const movData = req.body;
 
-            const data = new Date();
+            const mov = await Movimentacao.create(movData);
 
-            const mov = await Movimentacao.create({ ...movData, data });
-
-            return res.status(201).json(mov);
+            return res.status(201).json({error: false, data: mov});
 
         } catch (error) {
 
             console.log(error);
-            return res.status(500).json(error.message);
+            return res.status(500).json({error: true, message: error});
 
         }
 
@@ -98,7 +96,7 @@ module.exports = {
                 };
             });
 
-            return res.status(200).json(movs);
+            return res.status(200).json({error: false, data: movs});
 
         } catch (error) {
 
@@ -120,13 +118,13 @@ module.exports = {
 
             if (!mov) {
 
-                return res.status(404).json({ error: 'Movimentação não encontrada' });
+                return res.status(404).json({error: true, message: 'Movimentação não encontrada' });
 
             } // verifica se a movimentação existe
 
             if (mov.status === 'Autorizado') {
 
-                return res.status(400).json({ error: 'Movimentação já autorizada' });
+                return res.status(400).json({error: true, message: 'Movimentação já autorizada' });
 
             } // verifica se a movimentação já foi autorizada
 
@@ -134,7 +132,7 @@ module.exports = {
                 where: { id_mov },
             });
 
-            return res.status(200).json(autorizado);
+            return res.status(200).json({error: false, message: 'Movimentação autorizada', data: autorizado });
 
         } // tenta executar
 
@@ -146,5 +144,36 @@ module.exports = {
         } // retorna erro
 
     }, // autoriza uma movimentação
+
+    async readOne(req, res) {
+
+        try {
+            
+            const { id_mov } = req.params;
+
+            const mov = await Movimentacao.findAll({
+                where: { id_mov },
+                include: { all: true },
+                attributes: { 
+                    exclude: ['usuario'] ,
+                }
+            });
+
+            if (!mov) {
+                res.status(404).json({error: true, message: 'Movimentação não encontrada' });
+            } // verifica se a movimentação existe
+
+            return res.status(200).json({error: false, data: mov });
+
+        } // tenta executar
+
+        catch (error) {
+                
+                console.log(error);
+                return res.status(500).json(error);
+    
+            } // retorna erro
+
+    }, // lê uma movimentação
 
 };  // exporta o módulo

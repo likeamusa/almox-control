@@ -21,7 +21,7 @@ const Lote = database.define('Lote', {
     }, // define o material do lote
 
     validade: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false
     } // define o vencimento do lote
 

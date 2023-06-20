@@ -26,7 +26,7 @@ const Laudo = database.define('laudo', {
 
     vencimento: {
 
-        type: DataTypes.DATE, // define o tipo do vencimento
+        type: DataTypes.DATEONLY, // define o tipo do vencimento
         allowNull: false, // não permite nulo
 
     }, // define o vencimento do laudo

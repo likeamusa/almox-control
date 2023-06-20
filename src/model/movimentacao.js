@@ -182,6 +182,5 @@ Movimentacao.belongsTo(C_A_, { foreignKey: 'n_ca', as: 'c_a_' });
 Movimentacao.belongsTo(Lote, { foreignKey: 'n_lote', as: 'lote' });
 Movimentacao.belongsTo(Laudo, { foreignKey: 'n_laudo', as: 'laudo' });
 Movimentacao.belongsTo(Nota, { foreignKey: 'n_nota', as: 'nota' });
-Movimentacao.belongsTo(Usuario, { foreignKey: 'id_usuario', as: 'usuario' });
 
 module.exports = Movimentacao;

@@ -8,4 +8,6 @@ router.get('/', MovimentacaoController.read);
 
 router.put('/:id_mov', MovimentacaoController.autorize);
 
+router.get('/:id_mov', MovimentacaoController.readOne);
+
 module.exports = router;

@@ -21,7 +21,7 @@ const C_A_ = database.define('c_a_', {
     }, // material
 
     vencimento: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
     }, // data de vencimento do certificado
 

@@ -10,7 +10,7 @@ router.get('/', C_A_Controller.read); // lê todos os certificados de autentica�
 
 router.put('/:c_a_', C_A_Controller.update); // atualiza um certificado de autenticação
 
-router.get('/:c_a_', C_A_Controller.readOne); // lê um certificado de autenticação
+router.get('/:material_id', C_A_Controller.readOne); // lê todos os certificados de autenticação de um material
 
 router.delete('/:c_a_', C_A_Controller.delete); // deleta um certificado de autenticação
 

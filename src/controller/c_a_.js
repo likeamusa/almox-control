@@ -115,11 +115,17 @@ module.exports = {
 
         try {
 
-            const { c_a_ } = req.params; // recebe o certificado de autenticação
+            const { material_id } = req.params; // recebe o certificado de autenticação
 
-            const c_a_Read = await C_A_.findAll({ where: { c_a_ }, include: { association: 'material' } }); // lê o certificado de autenticação
+            const c_a_Exists = await C_A_.findOne({ where: { material_id } }); // verifica se o certificado de autenticação existe
 
-            return res.status(200).json(c_a_Read); // retorna o certificado de autenticação lido
+            if (!c_a_Exists) { // se o certificado de autenticação não existe
+                return res.status(400).json({ error: 'Certificado de autenticação não existe' }); // retorna erro
+            }
+
+            const all_c_a_s = await C_A_.findAll({ where: { material_id } }); // lê todos os certificados de autenticação
+
+            return res.status(200).json(all_c_a_s); // retorna o certificado de autenticação
 
         } // lê um certificado de autenticação
 

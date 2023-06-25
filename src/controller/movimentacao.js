@@ -111,6 +111,7 @@ module.exports = {
         try {
 
             const { id_mov } = req.params;
+            const { id_resp_aut } = req.body;
 
             const mov = await Movimentacao.findAll({
                 where: { id_mov },
@@ -128,9 +129,11 @@ module.exports = {
 
             } // verifica se a movimentação já foi autorizada
 
-            const autorizado = await Movimentacao.update({ status: 'Autorizada' }, {
+            const autorizado = await Movimentacao.update({ status: 'Autorizada', id_resp_aut }, {
                 where: { id_mov },
             });
+
+            console.log(autorizado);
 
             return res.status(200).json({error: false, message: 'Movimentação autorizada', data: autorizado });
 

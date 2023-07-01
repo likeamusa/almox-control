@@ -128,6 +128,8 @@ module.exports = {
 
             const usuario = await Usuario.findByPk(matricula) // verifica se o usuário existe
 
+            const { email, tipo_usuario } = usuario; // recebe o email do usuário
+
             if (!usuario) { // se o usuário não existe
                 return res.status(400).json({ error: 'Usuário não existe' }); // retorna erro
             }
@@ -142,7 +144,7 @@ module.exports = {
 
                 const token = jwt.sign({ matricula: usuario.matricula }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '24h' }); // cria o token
 
-                return res.status(200).json({error: false, token }); // retorna o usuário e o token
+                return res.status(200).json({error: false, token, matricula, email, tipo_usuario }); // retorna o usuário e o token
 
             }
         }

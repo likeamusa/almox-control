@@ -1,6 +1,7 @@
 const Material = require('../model/material');
 
 module.exports = {
+    
     async create(req, res) {
         const material = req.body;
         try {

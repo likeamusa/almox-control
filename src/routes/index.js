@@ -13,6 +13,7 @@ const FornecedorRoutes = require('./fornecedor');
 const ArquivoRoutes = require('./arquivo');
 const NotaRoutes = require('./nota');
 const CadastroController = require('../controller/cadastro');
+const EstoqueController = require('../controller/estoque');
 
 const MovimentacaoRoutes = require('./movimentacao');
 
@@ -45,6 +46,8 @@ routes.use('/notas', NotaRoutes);
 routes.use('/movimentacoes', MovimentacaoRoutes);
 
 routes.get('/cadastro', CadastroController.read);
+
+routes.get('/estoque', EstoqueController.getStock);
 
 routes.get('/status', (req, res) => {
     res.send({ status: 200 });

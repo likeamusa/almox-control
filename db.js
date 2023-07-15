@@ -1,19 +1,7 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
+const { development, production } = require('./src/infra/database');
 
-const database = new Sequelize({
-    dialect: 'postgres',
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_NAME,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    logging: false,
-    ssl: true,
-    dialectOptions: {
-        ssl: {}
-    }
-});
+const database = new Sequelize(process.env.NODE_ENV === 'production' ? production : development);
 
 database.sync({
     logging: false,

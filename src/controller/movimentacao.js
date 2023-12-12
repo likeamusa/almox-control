@@ -10,12 +10,12 @@ module.exports = {
 
             const mov = await Movimentacao.create(movData);
 
-            return res.status(201).json({error: false, data: mov});
+            return res.status(201).json({ error: false, data: mov });
 
         } catch (error) {
 
             console.log(error);
-            return res.status(500).json({error: true, message: error});
+            return res.status(500).json({ error: true, message: error });
 
         }
 
@@ -96,7 +96,7 @@ module.exports = {
                 };
             });
 
-            return res.status(200).json({error: false, data: movs});
+            return res.status(200).json({ error: false, data: movs });
 
         } catch (error) {
 
@@ -119,13 +119,13 @@ module.exports = {
 
             if (!mov) {
 
-                return res.status(404).json({error: true, message: 'Movimentação não encontrada' });
+                return res.status(404).json({ error: true, message: 'Movimentação não encontrada' });
 
             } // verifica se a movimentação existe
 
             if (mov.status === 'Autorizado') {
 
-                return res.status(400).json({error: true, message: 'Movimentação já autorizada' });
+                return res.status(400).json({ error: true, message: 'Movimentação já autorizada' });
 
             } // verifica se a movimentação já foi autorizada
 
@@ -135,7 +135,7 @@ module.exports = {
 
             console.log(autorizado);
 
-            return res.status(200).json({error: false, message: 'Movimentação autorizada', data: autorizado });
+            return res.status(200).json({ error: false, message: 'Movimentação autorizada', data: autorizado });
 
         } // tenta executar
 
@@ -151,32 +151,64 @@ module.exports = {
     async readOne(req, res) {
 
         try {
-            
+
             const { id_mov } = req.params;
 
             const mov = await Movimentacao.findAll({
                 where: { id_mov },
                 include: { all: true },
-                attributes: { 
-                    exclude: ['usuario'] ,
+                attributes: {
+                    exclude: ['usuario'],
                 }
             });
 
             if (!mov) {
-                res.status(404).json({error: true, message: 'Movimentação não encontrada' });
+                res.status(404).json({ error: true, message: 'Movimentação não encontrada' });
             } // verifica se a movimentação existe
 
-            return res.status(200).json({error: false, data: mov });
+            return res.status(200).json({ error: false, data: mov });
 
         } // tenta executar
 
         catch (error) {
-                
-                console.log(error);
-                return res.status(500).json(error);
-    
-            } // retorna erro
+
+            console.log(error);
+            return res.status(500).json(error);
+
+        } // retorna erro
 
     }, // lê uma movimentação
+
+    async delete(req, res) {
+
+        try {
+
+            const { id_mov } = req.params;
+
+            const mov = await Movimentacao.findAll({
+                where: { id_mov },
+            });
+
+            if (!mov) {
+
+                return res.status(404).json({ error: true, message: 'Movimentação não encontrada' });
+
+            } // verifica se a movimentação existe
+
+            const deleted = await Movimentacao.destroy({
+                where: { id_mov },
+            });
+
+            return res.status(200).json({ error: false, message: 'Movimentação deletada', data: deleted });
+
+        } // tenta executar
+
+        catch (error) {
+
+            console.log(error);
+            return res.status(500).json(error);
+
+        } // retorna erro
+    },
 
 };  // exporta o módulo

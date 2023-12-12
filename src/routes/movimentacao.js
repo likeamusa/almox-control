@@ -10,4 +10,6 @@ router.put('/:id_mov', MovimentacaoController.autorize);
 
 router.get('/:id_mov', MovimentacaoController.readOne);
 
+router.delete('/:id_mov', MovimentacaoController.delete);
+
 module.exports = router;

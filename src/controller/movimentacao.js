@@ -8,7 +8,11 @@ module.exports = {
 
             const movData = req.body;
 
-            const mov = await Movimentacao.create(movData);
+            const lastMovId = await Movimentacao.max('id');
+
+            console.log(lastMovId);
+
+            const mov = await Movimentacao.create({...movData, id: lastMovId + 1});
 
             return res.status(201).json({ error: false, data: mov });
 

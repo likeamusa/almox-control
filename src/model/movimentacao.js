@@ -117,12 +117,8 @@ const Movimentacao = db.define('movimentacao', {
 
     n_nota: {
 
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         alowNull: true,
-        references: {
-            model: Nota,
-            key: 'n_nota',
-        }
 
     }, // define a nota da movimentação
 
@@ -181,6 +177,5 @@ Movimentacao.belongsTo(Material, { foreignKey: 'id_material', as: 'material' });
 Movimentacao.belongsTo(C_A_, { foreignKey: 'n_ca', as: 'c_a_' });
 Movimentacao.belongsTo(Lote, { foreignKey: 'n_lote', as: 'lote' });
 Movimentacao.belongsTo(Laudo, { foreignKey: 'n_laudo', as: 'laudo' });
-Movimentacao.belongsTo(Nota, { foreignKey: 'n_nota', as: 'nota' });
 
 module.exports = Movimentacao;

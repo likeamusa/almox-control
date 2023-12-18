@@ -10,7 +10,6 @@ module.exports = {
         username: process.env.DB_USER,
         password: process.env.DB_PASS,
         logging: false,
-        force: true,
         ssl: true,
         dialectOptions: {
             ssl: {}

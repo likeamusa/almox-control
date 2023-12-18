@@ -35,6 +35,11 @@ const Usuario = database.define('usuario', {
         allowNull: false,
     },
 
+    centro: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+
 });
 
 Usuario.belongsTo(Colaborador, { foreignKey: 'matricula' }); // define o relacionamento entre o usuario e o colaborador

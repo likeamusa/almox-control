@@ -166,6 +166,8 @@ const Movimentacao = db.define('movimentacao', {
 
     }, // define o status da movimentação
 
+}, {
+    initialAutoIncrement: 1400,
 });
 
 Movimentacao.belongsTo(TipoMov, { foreignKey: 'tipo' });

@@ -8,13 +8,23 @@ module.exports = {
 
             const movData = req.body;
 
-            const lastMovId = await Movimentacao.max('id');
+            const lastId = await Movimentacao.max('id');
 
-            console.log(lastMovId);
+            let count = 0;
+            const updatedId = movData.map((mov) => {
+                count++;
 
-            const mov = await Movimentacao.create({...movData, id: lastMovId + 1});
+                return {
+                    ...mov,
+                    id: lastId + count,
+                };
 
-            return res.status(201).json({ error: false, data: mov });
+            });
+
+            const movs = await Movimentacao.bulkCreate(updatedId);
+
+            console.log(movs);
+            return res.status(201).json({ error: false, data: movs });
 
         } catch (error) {
 

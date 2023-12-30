@@ -3,7 +3,7 @@ require('dotenv').config();
 module.exports = {
 
     production: {
-        dialect: 'postgres',
+        dialect: 'mssql',
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
         database: process.env.DB_NAME,

@@ -126,11 +126,6 @@ const Movimentacao = db.define('movimentacao', {
 
         type: DataTypes.INTEGER,
         alowNull: true,
-        references: {
-            model: C_A_,
-            key: 'c_a_',
-        }
-
     }, // define o numero do certificado de autenticacao da movimentação
 
     id_usuario: {
@@ -176,7 +171,6 @@ Movimentacao.belongsTo(Centro, { foreignKey: 'id_centro_destino', as: 'destino' 
 Movimentacao.belongsTo(Colaborador, { foreignKey: 'id_resp_sol', as: 'solicitante' });
 Movimentacao.belongsTo(Colaborador, { foreignKey: 'id_resp_aut', as: 'autorizador' });
 Movimentacao.belongsTo(Material, { foreignKey: 'id_material', as: 'material' });
-Movimentacao.belongsTo(C_A_, { foreignKey: 'n_ca', as: 'c_a_' });
 Movimentacao.belongsTo(Lote, { foreignKey: 'n_lote', as: 'lote' });
 Movimentacao.belongsTo(Laudo, { foreignKey: 'n_laudo', as: 'laudo' });
 

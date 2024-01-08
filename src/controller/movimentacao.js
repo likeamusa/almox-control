@@ -66,10 +66,6 @@ module.exports = {
                         attributes: ['descricao'],
                     },
                     {
-                        association: 'c_a_',
-                        attributes: ['vencimento'],
-                    },
-                    {
                         association: 'lote',
                         attributes: ['validade'],
                     },

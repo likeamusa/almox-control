@@ -7,15 +7,17 @@ const TipoMovRoutes = require('./tipo_mov');
 const UsuarioRoutes = require('./usuario');
 const UsuarioController = require('../controller/usuario');
 const C_A_Routes = require('./c_a_');
-const LoteRoutes = require('./lote');
-const LaudoRoutes = require('./laudo');
-const FornecedorRoutes = require('./fornecedor');
-const ArquivoRoutes = require('./arquivo');
-const NotaRoutes = require('./nota');
+const Ca_materialRoutes = require('./ca_matarial');
+// const LoteRoutes = require('./lote');
+// const LaudoRoutes = require('./laudo');
+// const FornecedorRoutes = require('./fornecedor');
+// const ArquivoRoutes = require('./arquivo');
+// const NotaRoutes = require('./nota');
 const CadastroController = require('../controller/cadastro');
 const EstoqueController = require('../controller/estoque');
 
 const MovimentacaoRoutes = require('./movimentacao');
+
 
 const routes = express.Router();
 
@@ -33,15 +35,17 @@ routes.post('/login', UsuarioController.login);
 
 routes.use('/c_as', C_A_Routes);
 
-routes.use('/lotes', LoteRoutes);
+// routes.use('/lotes', LoteRoutes);
 
-routes.use('/laudos', LaudoRoutes);
+// routes.use('/laudos', LaudoRoutes);
 
-routes.use('/fornecedores', FornecedorRoutes);
+// routes.use('/fornecedores', FornecedorRoutes);
 
-routes.use('/arquivos', ArquivoRoutes);
+// routes.use('/arquivos', ArquivoRoutes);
 
-routes.use('/notas', NotaRoutes);
+// routes.use('/notas', NotaRoutes);
+
+routes.use('/ca_materials', Ca_materialRoutes);
 
 routes.use('/movimentacoes', MovimentacaoRoutes);
 

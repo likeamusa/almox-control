@@ -4,7 +4,7 @@ const { development, production } = require('./src/infra/database');
 const database = new Sequelize(process.env.NODE_ENV === 'production' ? production : development);
 
 database.sync({
-    logging: false,
+    force: false,
 }).then(() => {
     console.log('Database connected.');
 }).catch((error) => {

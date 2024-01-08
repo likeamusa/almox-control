@@ -11,14 +11,19 @@ const C_A_ = database.define('c_a_', {
         primaryKey: true,
     }, // numero do certificado de autenticacao
 
-    material_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Material,
-            key: 'id'
-        }
-    }, // material
+    descricao: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    }, // descricao do certificado de autenticacao
+
+    // material_id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //         model: Material,
+    //         key: 'id'
+    //     }
+    // }, // material
 
     vencimento: {
         type: DataTypes.DATEONLY,
@@ -26,7 +31,5 @@ const C_A_ = database.define('c_a_', {
     }, // data de vencimento do certificado
 
 });
-
-C_A_.belongsTo(Material, { foreignKey: 'material_id' }); // define o relacionamento entre o certificado de autenticacao e o material
 
 module.exports = C_A_;

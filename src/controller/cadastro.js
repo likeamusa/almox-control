@@ -7,6 +7,7 @@ const Lote = require('../model/lote');
 const Laudo = require('../model/laudo');
 const Ca = require('../model/c_a_');
 const Tipo_mov = require('../model/tipo_mov');
+const Ca_material = require('../model/ca_material');
 
 module.exports = {
 
@@ -23,8 +24,10 @@ module.exports = {
             const laudo = await Laudo.findAll();
             const ca = await Ca.findAll();
             const tipo_mov = await Tipo_mov.findAll();
+            const ca_material = await Ca_material.findAll();
 
-            return res.status(200).json({ material, colaborador, fornecedor, centro, nota, lote, laudo, ca, tipo_mov });
+            return res.status(200).json({ material, colaborador, fornecedor, centro, nota, lote, laudo, ca, tipo_mov, ca_material
+             });
 
         } // tenta executar
 

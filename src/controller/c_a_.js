@@ -10,14 +10,6 @@ module.exports = {
 
             const c_a_Data = req.body; // recebe o corpo da requisição
 
-            const { material_id } = c_a_Data; // recebe os dados do certificado de autenticação
-
-            const materialExists = await Material.findOne({ where: { id: material_id } }); // verifica se o material existe
-
-            if (!materialExists) { // se o material não existe
-                return res.status(400).json({ error: 'Material não existe' }); // retorna erro
-            }
-
             const c_a_ = await C_A_.create({ // cria o certificado de autenticação
                 ...c_a_Data,
             });

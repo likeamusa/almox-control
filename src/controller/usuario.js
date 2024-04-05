@@ -155,4 +155,22 @@ module.exports = {
 
     }, // loga um usuário
 
+    async changePassword (req, res) {
+            
+            try {
+                const { matricula } = req.params; // recebe a matricula do usuário
+                const { senha } = req.body; // recebe a senha do usuário
+    
+                const senhaEncriptada = await bcrypt.hash(senha, 10); // encripta a senha
+    
+                const updatedUsuario = await Usuario.update({ senha: senhaEncriptada }, { where: { matricula } }); // atualiza a senha do usuário
+    
+                return res.status(200).json(updatedUsuario); // retorna o usuário atualizado
+            }
+            catch (err) {
+                console.log(err); // loga o erro
+                return res.status(500).json({ error: err.message }); // retorna o erro
+            }
+    }, // altera a senha de um usuário
+
 };

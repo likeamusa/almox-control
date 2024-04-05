@@ -14,4 +14,7 @@ router.delete('/:matricula', UsuarioController.delete);
 
 router.post('/:matricula', UsuarioController.readOne);
 
+// change password
+router.post('/changePassword/:matricula', UsuarioController.changePassword);
+
 module.exports = router;
